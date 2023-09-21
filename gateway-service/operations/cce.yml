@@ -36,7 +36,7 @@
 
 # CCE - mariadb patch 
 - type: replace
-  path: /instance_groups/name=service-broker/jobs/name=service-broker/properties/mariadb?/cce_enable
+  path: /instance_groups/name=service-broker/jobs/name=ap-api-gateway-broker/properties/mariadb?/cce_enable
   value: true
 - type: replace
   path: /instance_groups/name=mariadb/jobs/name=mariadb/properties/mariadb?/cce_enable
