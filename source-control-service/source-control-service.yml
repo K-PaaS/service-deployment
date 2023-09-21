@@ -2,10 +2,10 @@
 name: source-control-service
 
 releases:
-- name: paasta-sourcecontrol-release
-  sha1: 71bf2928c8b85a8d6250c0f8e2d4f34068ac4615
-  url: https://nextcloud.paas-ta.org/index.php/s/nedXNXbEWnYtqBf/download
-  version: "1.1.10"
+- name: ap-source-control
+  sha1: cc849afcc22994bd2af88ba5b1ac68afebc4c5ba
+  url: https://nextcloud.k-paas.org/index.php/s/mdcHaFbiwZgC7Jp/download
+  version: "1.1.10.1"
 
 stemcells:
 - alias: default
@@ -30,7 +30,7 @@ instance_groups:
     static_ips: ((scm_private_ips))
   jobs:
   - name: scm-server
-    release: paasta-sourcecontrol-release
+    release: ap-source-control
 
 - name: mariadb
   azs: ((mariadb_azs))
@@ -43,7 +43,7 @@ instance_groups:
     static_ips: ((mariadb_private_ips))
   jobs:
   - name: mariadb
-    release: paasta-sourcecontrol-release
+    release: ap-source-control
 
 - name: haproxy
   azs: ((haproxy_azs))
@@ -58,9 +58,9 @@ instance_groups:
     static_ips: ((haproxy_public_ips))
   jobs:
   - name: haproxy
-    release: paasta-sourcecontrol-release
+    release: ap-source-control
 
-- name: sourcecontrol-webui
+- name: ap-source-control-ui
   azs: ((web_ui_azs))
   instances: ((web_ui_instances))
   persistent_disk_type: ((web_ui_persistent_disk_type))
@@ -70,10 +70,10 @@ instance_groups:
   - name: ((private_networks_name))
     static_ips: ((web_ui_private_ips))
   jobs:
-  - name: sourcecontrol-webui
-    release: paasta-sourcecontrol-release
+  - name: ap-source-control-ui
+    release: ap-source-control
 
-- name: sourcecontrol-api
+- name: ap-source-control-api
   azs: ((api_azs))
   instances: ((api_instances))
   persistent_disk_type: ((api_persistent_disk_type))
@@ -83,10 +83,10 @@ instance_groups:
   - name: ((private_networks_name))
     static_ips: ((api_private_ips))
   jobs:
-  - name: sourcecontrol-api
-    release: paasta-sourcecontrol-release
+  - name: ap-source-control-api
+    release: ap-source-control
 
-- name: sourcecontrol-broker
+- name: ap-source-control-broker
   azs: ((broker_azs))
   instances: ((broker_instances))
   persistent_disk_type: ((broker_persistent_disk_type))
@@ -97,16 +97,16 @@ instance_groups:
     static_ips:
     - ((broker_private_ips))
   jobs:
-  - name: sourcecontrol-broker
-    release: paasta-sourcecontrol-release
+  - name: ap-source-control-broker
+    release: ap-source-control
 
 properties:
   spring:
     datasource:
-      url: jdbc:mysql://((mariadb_private_ips)):((mariadb_port))/PAASTA_SRC_DB?autoReconnect=true&useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://((mariadb_private_ips)):((mariadb_port))/AP_SRC_DB?autoReconnect=true&useUnicode=true&characterEncoding=utf8
       username: ((mariadb_broker_username))
       password: ((mariadb_broker_password))
-      databasename: "PAASTA_SRC_DB"
+      databasename: "AP_SRC_DB"
     jpa:
       database: mysql
 
@@ -140,7 +140,7 @@ properties:
     datasource:
       username: root
       password: ((mariadb_admin_password))
-      databasename:  "PAASTA_SRC_DB"
+      databasename:  "AP_SRC_DB"
 
   scm:
     admin:

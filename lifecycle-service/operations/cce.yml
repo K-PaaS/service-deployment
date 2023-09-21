@@ -24,7 +24,7 @@
   path: /instance_groups/name=app-lifecycle/jobs/-
   value:
     name: common_script
-    release: paasta-conf
+    release: ap-conf
     properties:
       pre_start_script: |+
         #!/bin/bash
@@ -32,8 +32,8 @@
         sed -i'' -r -e "/keepalive_timeout/i\  disable_symlinks    on;" /var/vcap/packages/nginx/conf/nginx.conf
         echo "added disable_symlinks in nginx.conf"
 - type: replace
-  path: /releases/name=paasta-conf?
+  path: /releases/name=ap-conf?
   value:
-    name: paasta-conf
-    url:  https://nextcloud.paas-ta.org/index.php/s/eysAPEKdyX9d9mj/download
-    version: 1.0.4
+    name: ap-conf
+    url:  https://nextcloud.k-paas.org/index.php/s/qKWKjAS4omLHgZk/download
+    version: 1.0.7.1

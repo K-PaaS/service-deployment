@@ -1,11 +1,11 @@
-# paasta-pinpoint 설정 파일 내용
+# pinpoint 설정 파일 내용
 name: pinpoint                                                    # 서비스 배포이름(필수)
 
 releases:
-- name: "paasta-pinpoint-release"                                # 서비스 릴리즈 이름(필수) bosh releases로 확인 가능
-  version: "1.1.5"                                              # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
-  sha1: 24e20a8efc205b3babb10453ecdc7c5c1210de1a
-  url: https://nextcloud.paas-ta.org/index.php/s/d9KXLxLcLFSTpie/download
+- name: "ap-pinpoint"                                # 서비스 릴리즈 이름(필수) bosh releases로 확인 가능
+  version: "1.1.5.1"                                              # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+  sha1: 762c95e8a41bb3c12f536aa6d305a364c18ebcfc
+  url: https://nextcloud.k-paas.org/index.php/s/W6N2TcGwekx5iz8/download
 
 stemcells:
 - alias: default
@@ -29,7 +29,7 @@ instance_groups:
   - name: ((private_networks_name))                               # Networks block에서 선언한 network 이름(필수)
   jobs:
   - name: h_master
-    release: "paasta-pinpoint-release"
+    release: "ap-pinpoint"
   syslog_aggregator: null
   provides:
     h_master_link: {as: h_master}
@@ -46,7 +46,7 @@ instance_groups:
   - name: ((private_networks_name))                            # Networks block에서 선언한 network 이름(필수)
   jobs:
   - name: collector 
-    release: "paasta-pinpoint-release"
+    release: "ap-pinpoint"
   syslog_aggregator: null
   provides:
     collector_link: {as: collector}
@@ -64,7 +64,7 @@ instance_groups:
   - name: ((private_networks_name))                             # Networks block에서 선언한 network 이름(필수)
   jobs:
   - name: pinpoint_web
-    release: "paasta-pinpoint-release"
+    release: "ap-pinpoint"
   syslog_aggregator: null
   provides:
     pinpoint_web_link: {as: pinpoint_web}
@@ -72,7 +72,7 @@ instance_groups:
     h_master_link: {from: h_master}
     pinpoint_web_link: {from: pinpoint_web}
 
-- name: broker                                                    # 작업 이름(필수)
+- name: service-broker                                                    # 작업 이름(필수)
   azs: ((broker_azs))
   instances: ((broker_instances))                                 # job 인스턴스 수(필수)
   vm_type: ((broker_vm_type))
@@ -81,8 +81,8 @@ instance_groups:
   networks:                                                       # 네트워크 구성정보          
   - name: ((private_networks_name))                               # Networks block에서 선언한 network 이름(필수)
   jobs:
-  - name: broker
-    release: "paasta-pinpoint-release"
+  - name: ap-pinpoint-broker
+    release: "ap-pinpoint"
   syslog_aggregator: null
   provides:
     broker_link: {as: broker}
@@ -102,7 +102,7 @@ instance_groups:
     static_ips: ((webui_haproxy_public_ip))
   jobs:
   - name: haproxy_webui
-    release: "paasta-pinpoint-release"
+    release: "ap-pinpoint"
   syslog_aggregator: null
   provides:
     haproxy_link: {as: haproxy_webui}

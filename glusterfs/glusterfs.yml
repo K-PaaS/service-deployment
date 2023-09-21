@@ -1,10 +1,10 @@
 name: glusterfs                       # 서비스 배포이름(필수)
 
 releases:
-- name: paasta-glusterfs             # 서비스 릴리즈 이름(필수)
-  url: https://nextcloud.paas-ta.org/index.php/s/mm72Bmi7JnHL5K6/download
-  sha1: fbeafec7b56081df526e9ef1fdd0f65449483c8b
-  version: "2.1.6"                   # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+- name: ap-glusterfs             # 서비스 릴리즈 이름(필수)
+  url: https://nextcloud.k-paas.org/index.php/s/fMExbADy4tDwa9c/download
+  sha1: fad89f107e2f029be474e8c24ebe2bdcbde0e739
+  version: "2.1.6.1"                   # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
   canaries: 1                        # canary 인스턴스 수(필수)
@@ -28,14 +28,14 @@ instance_groups:
   vm_type: ((mysql_vm_type))
   jobs: 
   - name: mysql                                         # job template 이름(필수)
-    release: paasta-glusterfs
+    release: ap-glusterfs
     properties:                                         # job에 대한 속성을 지정(필수)
       mysql_port: ((mysql_port))
       admin_username: ((mysql_admin_username))          # MySQL 어드민 계정
       admin_password: ((mysql_admin_password))          # MySQL 어드민 패스워드
 
 
-- name: paasta-glusterfs-broker
+- name: service-broker
   instances: ((broker_instances))
   azs: ((broker_azs))
   networks:
@@ -43,11 +43,11 @@ instance_groups:
   stemcell: default
   vm_type: medium
   jobs: 
-  - name: op-glusterfs-java-broker
-    release: paasta-glusterfs 
+  - name: ap-glusterfs-broker
+    release: ap-glusterfs 
     properties:
-      log_dir: paasta-glusterfs-broker                       # Broker Log 저장 디렉토리 명
-      log_file: paasta-glusterfs-broker                      # Broker Log 저장 파일 명
+      log_dir: ap-glusterfs-broker                       # Broker Log 저장 디렉토리 명
+      log_file: ap-glusterfs-broker                      # Broker Log 저장 파일 명
       log_level: INFO                                        # Broker Log 단계
       glusterfs_url: ((glusterfs_url))                       # Glusterfs 서비스 주소
       glusterfs_tenantname: ((glusterfs_tenantname))         # Glusterfs 서비스 테넌트 이름
@@ -67,7 +67,7 @@ instance_groups:
   vm_type: ((broker_registrar_vm_type))
   jobs: 
   - name: broker-registrar
-    release: paasta-glusterfs
+    release: ap-glusterfs
     properties:
       broker:
         name: glusterfs-service                      # Service Broker Name
@@ -76,10 +76,10 @@ instance_groups:
         protocol: http                               # Service Broker Http Protocol
         port: 8080                                   # Service Broker port
       cf:
-        admin_password: ((paasta_admin_username))    # paasta Paasword
-        admin_username: ((paasta_admin_password))    # paasta Id
-        api_url: https://api.((system_domain))       # paasta Target Url
-        skip_ssl_validation: true                    # paasta SSL 설정
+        admin_password: ((ap_admin_username))    # ap Paasword
+        admin_username: ((ap_admin_password))    # ap Id
+        api_url: https://api.((system_domain))       # ap Target Url
+        skip_ssl_validation: true                    # ap SSL 설정
 
 - name: broker-deregistrar
   instances: ((broker_deregistrar_instances))
@@ -91,12 +91,12 @@ instance_groups:
   vm_type: ((broker_deregistrar_vm_type))
   jobs: 
   - name: broker-deregistrar
-    release: paasta-glusterfs
+    release: ap-glusterfs
     properties:
       broker:
       name: glusterfs-service
       cf:
-        admin_password: ((paasta_admin_username))
-        admin_username: ((paasta_admin_password))
+        admin_password: ((ap_admin_username))
+        admin_username: ((ap_admin_password))
         api_url: https://api.((system_domain))
         skip_ssl_validation: true

@@ -2,22 +2,22 @@
 
 # CCE - mysql patch
 - type: replace
-  path: /instance_groups/name=mysql-broker/jobs/name=op-mysql-java-broker/properties/cce_enable?
+  path: /instance_groups/name=service-broker/jobs/name=ap-mysql-broker/properties/cce_enable?
   value: true
 
 - type: replace
   path: /releases/name=pxc?
   value:
     name: "pxc"
-    sha1: 7f90f2689f31ddcd95fe16c75a4e8816f2ec59db
-    url: https://nextcloud.paas-ta.org/index.php/s/cfGCLsgPz6iMcCE/download
-    version: 0.44.0-PaaS-TA-v2
+    sha1: af80185926283e3a2d7ff844e55ab993df0cc860
+    url: https://nextcloud.k-paas.org/index.php/s/SJYMSpZGjSFymAJ
+    version: 0.44.0-K-PaaS-v2
 
 - type: replace
   path: /instance_groups/name=mysql/jobs/-
   value:
-    name: paasta_db_conf
-    release: paasta-conf
+    name: ap_db_conf
+    release: ap-conf
     properties:
       cce_enable: true
 

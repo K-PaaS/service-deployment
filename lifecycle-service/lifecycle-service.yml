@@ -3,10 +3,10 @@ name: ((deployment_name))
 features:
   use_dns_addresses: false
 releases:
-- name: paasta-app-lifecycle-service
-  url: https://nextcloud.paas-ta.org/index.php/s/bPMEg9Ajj2TqAg7/download
-  sha1: cd80520fefa3ce3da7081ab523210bdc29453fdd
-  version: "1.1.7"
+- name: ap-app-lifecycle
+  url: https://nextcloud.k-paas.org/index.php/s/y4ntzqsjDNyQXKb/download
+  sha1: c1e0f44feb1b0f57e44e9c2dbb1675d8811238f9
+  version: "1.1.7.1"
 
 stemcells:
 - alias: default
@@ -31,7 +31,7 @@ instance_groups:
   - name: ((private_networks_name))
   jobs:
   - name: mariadb
-    release: paasta-app-lifecycle-service
+    release: ap-app-lifecycle
     properties:
       database:
         port: ((mariadb_port))
@@ -50,8 +50,8 @@ instance_groups:
   networks:
   - name: ((private_networks_name))
   jobs:
-  - name: service-broker
-    release: paasta-app-lifecycle-service
+  - name: ap-app-lifecycle-broker
+    release: ap-app-lifecycle
     properties:
       bosh:
         client:
@@ -85,15 +85,15 @@ instance_groups:
   - name: ((public_networks_name))
   jobs:
   - name: taiga-front
-    release: paasta-app-lifecycle-service
+    release: ap-app-lifecycle
   - name: taiga-back
-    release: paasta-app-lifecycle-service
+    release: ap-app-lifecycle
     properties:
       service:
         admin_password: ((app_lifecycle_admin_password))
         init_password: ((app_lifecycle_serviceadmin_password))
   - name: postgres
-    release: paasta-app-lifecycle-service
+    release: ap-app-lifecycle
     properties:
       service:
         admin_password: ((app_lifecycle_admin_password))

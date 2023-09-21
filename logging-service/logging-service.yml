@@ -7,18 +7,18 @@ stemcells:
   version: ((stemcell_version))
 
 releases:
-- name: fluentd-release
-  version: 1.15.2
-  sha1: 28b0d0643377eab4707ff1dcc310488872f3bfe2
-  url: https://nextcloud.paas-ta.org/index.php/s/RtLE8M66jFwZKN5/download
-- name: monitoring-influxdb-release
-  version: 5.8.1
-  sha1: 813d7b2ebf18c0859df209853818c53a22f42b2f
-  url: https://nextcloud.paas-ta.org/index.php/s/qSsJerfdNKXxC5o/download
-- name: paasta-collector-release
-  version: 5.8.2
-  sha1: f56523758bc839be53e44583df1b65837ed303af
-  url: https://nextcloud.paas-ta.org/index.php/s/gesnBRQsKEJPoTE/download
+- name: ap-fluentd
+  version: 1.15.2.1
+  sha1: d5d07c0bfd9f9e37f1b8130b2212a7ea871c8e54
+  url: https://nextcloud.k-paas.org/index.php/s/zDF3JiqXQ775FDp/download
+- name: monitoring-influxdb
+  version: 5.8.1.1
+  sha1: b0ce403ad012bcb3730db9bba37254847d2c72bd
+  url: https://nextcloud.k-paas.org/index.php/s/tk3YzjC5ijS77sM/download
+- name: ap-collector
+  version: 5.8.2.1
+  sha1: dd074bf19e8838c5252bcd5f06827c8bb558704b
+  url: https://nextcloud.k-paas.org/index.php/s/j3zDRp6kZERPNW5/download
 - name: syslog
   version: 12.0.2
   sha1: ef0c0cfaf83002175fd88aae005774e33f1d4787
@@ -40,7 +40,7 @@ instance_groups:
     - ((fluentd_ip))
   jobs:
   - name: fluentd
-    release: fluentd-release
+    release: ap-fluentd
     properties:
       logging:
         db:
@@ -75,7 +75,7 @@ instance_groups:
     - ((influxdb_ip))
   jobs:
   - name: influxdb
-    release: monitoring-influxdb-release
+    release: monitoring-influxdb
     properties:
       influxdb:
         user: ((influxdb_username))
@@ -89,7 +89,7 @@ instance_groups:
         pem_key: ((influxdb_pem_key))
         logging_db_name: ((influxdb_database))
   - name: chronograf
-    release: monitoring-influxdb-release
+    release: monitoring-influxdb
     properties:
       influxdb:
         user: ((influxdb_username))
@@ -109,7 +109,7 @@ instance_groups:
   - name: ((collector_network))
   jobs:
   - name: ingestor_cloudfoundry-firehose
-    release: paasta-collector-release
+    release: ap-collector
     properties:
       cloudfoundry:
         api_endpoint: https://api.((system_domain))
