@@ -3,7 +3,7 @@ name: source-control-service
 
 releases:
 - name: ap-source-control
-  sha1: cc849afcc22994bd2af88ba5b1ac68afebc4c5ba
+  sha1: 87321c012f6b7bdfb8aabffc238b5d26f21e54c1
   url: https://nextcloud.k-paas.org/index.php/s/mdcHaFbiwZgC7Jp/download
   version: "1.1.10.1"
 
