@@ -1,8 +1,8 @@
-deployment_name: "rabbitmq"                                  # rabbitmq deployment name 
+deployment_name: "rabbitmq"                                 # rabbitmq deployment name 
 
 # STEMCELL
-stemcell_os: "ubuntu-jammy"                                # stemcell os
-stemcell_version: "1.181"                                  # stemcell version
+stemcell_os: "ubuntu-jammy"                                 # stemcell os
+stemcell_version: "1.181"                                   # stemcell version
 
 # VM_TYPE
 vm_type_small: "minimal"                                    # vm type small 
@@ -12,13 +12,13 @@ private_networks_name: "default"                            # private network na
 
 # COMMON
 bosh_name: "micro-bosh"                                     # bosh name (e.g. micro-bosh) -- ('bosh env' 명령어를 통해 확인 가능)
-paasta_deployment_name: "paasta"                            # paasta application platform name (e.g. paasta)
+ap_deployment_name: "ap"                                    # application platform name (e.g. ap)
 
 # RABBITMQ
 rabbitmq_azs: [z3]                                          # rabbitmq : azs
 rabbitmq_instances: 1                                       # rabbitmq : instances (1) 
 rabbitmq_private_ips: "<RABBITMQ_PRIVATE_IPS>"              # rabbitmq : private ips (e.g. "10.0.81.31")
-management_username: "<MANAGEMENT_USERNAME>"  		    # rabbitmq : username (e.g. "madmin") *broker/administrator_username != management_username
+management_username: "<MANAGEMENT_USERNAME>"  		          # rabbitmq : username (e.g. "madmin") *broker/administrator_username != management_username
 
 # HAPROXY
 haproxy_azs: [z3]                                           # haproxy : azs
@@ -29,7 +29,7 @@ haproxy_private_ips: "<HAPROXY_PRIVATE_IPS>"                # haproxy : private 
 broker_azs: [z3]                                            # service-broker : azs
 broker_instances: 1                                         # service-broker : instances (1)
 broker_port: 4567                                           # service-broker : broker port (e.g. "4567")
-broker_username: "<SERVICE_BROKER_USERNAME>"		    # service-broker : username (e.g. "admin") *broker/administrator_username != management_username
+broker_username: "<SERVICE_BROKER_USERNAME>"		            # service-broker : username (e.g. "admin") *broker/administrator_username != management_username
 broker_password: "<SERVICE_BROKER_PASSWORD>"                # service-broker : password (e.g. "admin" no recommand)
 administrator_username: "<SERVICE_BROKER_ADMIN_USERNAME>"   # servier-broker : administrator username (e.g. "administrator")
 

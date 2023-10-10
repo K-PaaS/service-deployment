@@ -3,10 +3,10 @@ name: ((deployment_name))
 features:
   use_dns_addresses: false
 releases:
-- name: paasta-api-gateway-service
-  url: https://nextcloud.paas-ta.org/index.php/s/JAB6jPe2NaASzKc/download
-  sha1: 9019baaaa198689516d108284597a5fc59e30caf
-  version: "1.1.10"
+- name: ap-api-gateway
+  url: https://nextcloud.k-paas.org/index.php/s/4NFbGcy3qJ4kpfT/download
+  sha1: d950c6913d8de01cea2a019c2594887ebf076069
+  version: "1.1.10.1"
 
 stemcells:
 - alias: default
@@ -31,7 +31,7 @@ instance_groups:
   - name: ((private_networks_name))
   jobs:
   - name: mariadb
-    release: paasta-api-gateway-service
+    release: ap-api-gateway
     properties:
       database:
         port: ((mariadb_port))
@@ -50,8 +50,8 @@ instance_groups:
   networks:
   - name: ((private_networks_name))
   jobs:
-  - name: service-broker
-    release: paasta-api-gateway-service
+  - name: ap-api-gateway-broker
+    release: ap-api-gateway
     properties:
       bosh:
         client:
@@ -85,7 +85,7 @@ instance_groups:
   - name: ((public_networks_name))
   jobs:
   - name: api-gateway
-    release: paasta-api-gateway-service
+    release: ap-api-gateway
     properties:
       service:
         admin_password: ((api_gateway_admin_password))

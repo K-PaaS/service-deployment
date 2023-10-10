@@ -1,11 +1,11 @@
-# paasta-delivery-pipeline-service 설정 파일 내용
+# pipeline-service 설정 파일 내용
 name: pipeline-service                      # 서비스 배포이름(필수)
 
 releases:
-- name: paasta-delivery-pipeline-release                    # 서비스 릴리즈 이름(필수)
-  url: https://nextcloud.paas-ta.org/index.php/s/3ty8HAERm5HmoDG/download
-  sha1: ecb4a5a648ebaf5b6fccb89326cf76050e04527c
-  version: "1.3.6"                                        # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+- name: ap-pipeline                    # 서비스 릴리즈 이름(필수)
+  url: https://nextcloud.k-paas.org/index.php/s/7jAHxNrtB5rNn9D/download
+  sha1: 3765a1a4e58872acbe05bf16ebe748edd374d463
+  version: "1.3.6.1"                                        # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 stemcells:
 - alias: default
@@ -30,7 +30,7 @@ instance_groups:
     static_ips: [((mariadb_internal_static_ips))]
   jobs:
   - name: mariadb
-    release: paasta-delivery-pipeline-release
+    release: ap-pipeline
 
 - name: postgres
   azs: ((postgres_azs))
@@ -43,7 +43,7 @@ instance_groups:
     static_ips: [((postgres_internal_static_ips))]
   jobs:
   - name: postgres
-    release: paasta-delivery-pipeline-release
+    release: ap-pipeline
 
 - name: inspection
   azs: ((inspection_azs))
@@ -55,7 +55,7 @@ instance_groups:
     static_ips: [((inspection_internal_static_ips))]
   jobs:
   - name: inspection
-    release: paasta-delivery-pipeline-release
+    release: ap-pipeline
 
 - name: haproxy
   azs: ((haproxy_azs))
@@ -69,7 +69,7 @@ instance_groups:
     static_ips: [((haproxy_public_static_ips))]
   jobs:
   - name: haproxy
-    release: paasta-delivery-pipeline-release
+    release: ap-pipeline
 
 - name: ci_server
   azs: ((ci_server_azs))
@@ -84,7 +84,7 @@ instance_groups:
     - ((ci_server_dedicated_internal_static_ip))
   jobs:
   - name: ci_server
-    release: paasta-delivery-pipeline-release
+    release: ap-pipeline
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
@@ -100,9 +100,9 @@ instance_groups:
     static_ips: [((binary_storage_internal_static_ips))]
   jobs:
   - name: binary_storage
-    release: paasta-delivery-pipeline-release
+    release: ap-pipeline
 
-- name: delivery-pipeline-common-api
+- name: ap-pipeline-common-api
   azs: ((common_api_azs))
   instances: ((common_api_instances))
   vm_type: ((common_api_vm_type))
@@ -111,10 +111,10 @@ instance_groups:
   - name: ((private_networks_name))
     static_ips: [((common_api_internal_static_ips))]
   jobs:
-  - name: delivery-pipeline-common-api
-    release: paasta-delivery-pipeline-release
+  - name: ap-pipeline-common-api
+    release: ap-pipeline
 
-- name: delivery-pipeline-inspection-api
+- name: ap-pipeline-inspection-api
   azs: ((inspection_api_azs))
   instances: ((inspection_api_instances))
   vm_type: ((inspection_api_vm_type))
@@ -123,10 +123,10 @@ instance_groups:
   - name: ((private_networks_name))
     static_ips: [((inspection_api_internal_static_ips))]
   jobs:
-  - name: delivery-pipeline-inspection-api
-    release: paasta-delivery-pipeline-release
+  - name: ap-pipeline-inspection-api
+    release: ap-pipeline
 
-- name: delivery-pipeline-binary-storage-api
+- name: ap-pipeline-binary-storage-api
   azs: ((storage_api_azs))
   instances: ((storage_api_instances))
   vm_type: ((storage_api_vm_type))
@@ -135,10 +135,10 @@ instance_groups:
   - name: ((private_networks_name))
     static_ips: [((storage_api_internal_static_ips))]
   jobs:
-  - name: delivery-pipeline-binary-storage-api
-    release: paasta-delivery-pipeline-release
+  - name: ap-pipeline-binary-storage-api
+    release: ap-pipeline
 
-- name: delivery-pipeline-api
+- name: ap-pipeline-api
   azs: ((api_azs))
   instances: ((api_instances))
   vm_type: ((api_vm_type))
@@ -147,10 +147,10 @@ instance_groups:
   - name: ((private_networks_name))
     static_ips: [((api_internal_static_ips))]
   jobs:
-  - name: delivery-pipeline-api
-    release: paasta-delivery-pipeline-release
+  - name: ap-pipeline-api
+    release: ap-pipeline
 
-- name: delivery-pipeline-service-broker
+- name: service-broker
   azs: ((service_broker_azs))
   instances: ((service_broker_instances))
   vm_type: ((service_broker_vm_type))
@@ -159,10 +159,10 @@ instance_groups:
   - name: ((private_networks_name))
     static_ips: [((service_broker_internal_static_ips))]
   jobs:
-  - name: delivery-pipeline-service-broker
-    release: paasta-delivery-pipeline-release
+  - name: ap-pipeline-broker
+    release: ap-pipeline
 
-- name: delivery-pipeline-ui
+- name: ap-pipeline-ui
   azs: ((ui_azs))
   instances: ((ui_instances))
   vm_type: ((ui_vm_type))
@@ -171,10 +171,10 @@ instance_groups:
   - name: ((private_networks_name))
     static_ips: [((ui_internal_static_ips))]
   jobs:
-  - name: delivery-pipeline-ui
-    release: paasta-delivery-pipeline-release
+  - name: ap-pipeline-ui
+    release: ap-pipeline
 
-- name: delivery-pipeline-scheduler
+- name: ap-pipeline-scheduler
   azs: ((scheduler_azs))
   instances: ((scheduler_instances))
   vm_type: ((scheduler_vm_type))
@@ -183,8 +183,8 @@ instance_groups:
   - name: ((private_networks_name))
     static_ips: [((scheduler_internal_static_ips))]
   jobs:
-  - name: delivery-pipeline-scheduler
-    release: paasta-delivery-pipeline-release
+  - name: ap-pipeline-scheduler
+    release: ap-pipeline
 
 properties:
   cf:                                                      # CLOUD FOUNDRY 설정 정보
@@ -287,7 +287,7 @@ properties:
       port: ((common_api_port))
     authorization:
       id: admin
-      password: PaaS-TA
+      password: K-PaaS
     logging:
       level: INFO
     haproxy:
@@ -301,7 +301,7 @@ properties:
       port: ((api_port))
     authorization:
       id: admin
-      password: PaaS-TA
+      password: K-PaaS
     http:
       multipart:
         max_file_size: 1000Mb
@@ -325,7 +325,7 @@ properties:
       level: INFO
     authorization:
       id: admin
-      password: PaaS-TA
+      password: K-PaaS
     haproxy:
       urls:
         - ((inspection_api_internal_static_ips))
@@ -343,7 +343,7 @@ properties:
     url: http://((storage_api_internal_static_ips))
     authorization:
       id: admin
-      password: PaaS-TA
+      password: K-PaaS
     java_opts: '-XX:MaxMetaspaceSize=104857K -Xss349K -Xms681574K -XX:MetaspaceSize=104857K -Xmx681574K'
 
   pipeline_ui:                                              # UI 설정 정보
@@ -368,14 +368,14 @@ properties:
       level: INFO
     quartz:
       scheduler:
-        instance_name: paastaDeliveryPipelineScheduler
+        instance_name: apPipelineScheduler
         instance_id: AUTO
       thread_pool:
         thread_count: 5
     job:
       start_delay: 0
       repeat_interval: 5000
-      description: PaaS-TA Delivery Pipeline Scheduler
+      description: Application Platform Pipeline Scheduler
       key: StatisticsJob
     java_opts: '-XX:MaxMetaspaceSize=104857K -Xss349K -Xms681574K -XX:MetaspaceSize=104857K -Xmx681574K'
 

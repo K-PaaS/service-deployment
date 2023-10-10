@@ -35,8 +35,8 @@ instance_groups:
           shareable: true
           username: ((broker_username))
           uuid: 568725FD-AD46-44CA-9853-621416E983A4
-    release: paasta-rabbitmq
-  name: rmq-broker
+    release: ap-rabbitmq
+  name: service-broker
   networks:
   - name: ((private_networks_name)) 
   stemcell: default
@@ -52,7 +52,7 @@ instance_groups:
         targets:
         - query: '*'
           instance_group: nats
-          deployment: ((paasta_deployment_name))
+          deployment: ((ap_deployment_name))
           network: default
           domain: bosh
   - name: rabbitmq-server
@@ -82,11 +82,11 @@ instance_groups:
         - 15672
         - 15674
         restart_statsdb_cron_schedule: 42 */4 * * *
-    release: paasta-rabbitmq
+    release: ap-rabbitmq
   - name: route_registrar
     release: routing
     consumes:
-      nats-tls: {from: nats-tls, deployment: ((paasta_deployment_name))}
+      nats-tls: {from: nats-tls, deployment: ((ap_deployment_name))}
     properties:
       nats:
         tls:
@@ -118,7 +118,7 @@ instance_groups:
         stats:
           password: ((management_password))
           username: ((management_username))
-    release: paasta-rabbitmq
+    release: ap-rabbitmq
   name: haproxy
   networks:
   - name: ((private_networks_name)) 
@@ -129,10 +129,10 @@ instance_groups:
 releases:
 - name: bpm
   version: latest
-- name: paasta-rabbitmq
-  url: https://nextcloud.paas-ta.org/index.php/s/EYMxfr93WTbytmj/download
-  version: 2.1.3
-  sha1: 02834d79bd5ce512f98d92220a25a1834c9aed58
+- name: ap-rabbitmq
+  url: https://nextcloud.k-paas.org/index.php/s/rEwsWLggd3Emt5G/download
+  version: 2.1.3.1
+  sha1: 06703da9dc4f4b133f3b923d121e3b73baba750e
 - name: routing
   url: https://bosh.io/d/github.com/cloudfoundry/routing-release?v=0.228.0
   version: 0.228.0
@@ -148,7 +148,7 @@ variables:
 - name: nats_client_cert
   type: certificate
   options:
-    ca: /((bosh_name))/((paasta_deployment_name))/nats_ca
+    ca: /((bosh_name))/((ap_deployment_name))/nats_ca
     common_name: "nats_client"
     extended_key_usage:
     - client_auth

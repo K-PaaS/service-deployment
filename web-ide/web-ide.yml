@@ -7,10 +7,10 @@ stemcells:
     version: ((stemcell_version))
 
 releases:
-  - name: paas-ta-webide-release                                 # 서비스 릴리즈 이름(필수) bosh releases로 확인 가능
-    url: https://nextcloud.paas-ta.org/index.php/s/kN6j8LB9N6tiybK/download
-    sha1: cf3656019928e19298d429f781fdf89d3e6167c6
-    version: "2.1.8"                                             # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+  - name: ap-web-ide                                 # 서비스 릴리즈 이름(필수) bosh releases로 확인 가능
+    url: https://nextcloud.k-paas.org/index.php/s/Cs6W94L73jNqqtY/download
+    sha1: e655cc8617c8254abb65d9a35bedd9901145f54f
+    version: "2.1.8.1"                                             # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
   canaries: 1                                               # canary 인스턴스 수(필수)
@@ -33,7 +33,7 @@ instance_groups:
 
   jobs:
   - name: eclipse-che
-    release: paas-ta-webide-release
+    release: ap-web-ide
 
 - name: mariadb
   azs: ((mariadb_azs))
@@ -45,7 +45,7 @@ instance_groups:
   - name: ((private_networks_name))
   jobs:
   - name: mariadb
-    release: paas-ta-webide-release
+    release: ap-web-ide
   syslog_aggregator: null
   properties:
     mariadb:                                                # MARIA DB SERVER 설정 정보
@@ -58,7 +58,7 @@ instance_groups:
 
   ######## BROKER ########
 
-- name: webide-broker
+- name: service-broker
   azs: ((broker_azs))
   instances: ((broker_instances))
   vm_type: ((broker_vm_type))
@@ -66,8 +66,8 @@ instance_groups:
   networks:
   - name: ((private_networks_name))
   jobs:
-  - name: web-ide-broker
-    release: paas-ta-webide-release
+  - name: ap-web-ide-broker
+    release: ap-web-ide
   syslog_aggregator: null
   properties:
     network:
@@ -100,8 +100,8 @@ instance_groups:
       url: "((system_domain))"
       sslSkipValidation: "((cloudfoundry_sslSkipValidation))"
       admin:
-        id: "((paasta_admin_username))"
-        password: "((paasta_admin_password))"
+        id: "((ap_admin_username))"
+        password: "((ap_admin_password))"
 
 properties:                                                     
   cce_enable: false

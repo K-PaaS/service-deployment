@@ -11,13 +11,13 @@ releases:
   sha1: 495099d35e3b2a24bf73ed42c152e1ff10cb3576
   url: https://bosh.io/d/github.com/cloudfoundry-incubator/pxc-release?v=0.44.0
   version: 0.44.0
-- name: paasta-conf
-  url:  https://nextcloud.paas-ta.org/index.php/s/2zz3xPqEErCPq3y/download
-  version: 1.0.7
-- name: paasta-mysql
-  sha1: 697bc5283b1cfec20764a70f6bfda82b882fff40
-  url: https://nextcloud.paas-ta.org/index.php/s/wLDLEd5X4S2RrXP/download
-  version: 2.2.1
+- name: ap-conf
+  url:  https://nextcloud.k-paas.org/index.php/s/qKWKjAS4omLHgZk/download
+  version: 1.0.7.1
+- name: ap-mysql
+  sha1: f53ae5db20403db848884039abb745541a6e4c16
+  url: https://nextcloud.k-paas.org/index.php/s/5RJTLpjkdweipxS/download
+  version: 2.2.1.1
 
 - name: bpm
   version: latest
@@ -78,7 +78,7 @@ instance_groups:
   - name: bootstrap
     release: pxc
   - name: db_init_script
-    release: paasta-conf
+    release: ap-conf
     properties:
       delay_time: 10
       db_client_path: /var/vcap/packages/pxc/bin/mysql
@@ -130,7 +130,7 @@ instance_groups:
       api_password: ((cf_mysql_proxy_api_password))
       api_port: 8083
 
-- name: mysql-broker
+- name: service-broker
   instances: ((mysql_broker_instances))
   azs: ((mysql_broker_azs))
   networks:
@@ -138,8 +138,8 @@ instance_groups:
   vm_type: ((mysql_broker_vm_type))
   stemcell: default
   jobs:
-  - name: op-mysql-java-broker
-    release: paasta-mysql
+  - name: ap-mysql-broker
+    release: ap-mysql
     properties:
       database_type: mysql
       mysql_admin_password: ((mysql_admin_password))
