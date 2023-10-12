@@ -115,14 +115,14 @@ properties:
     url: ((haproxy_private_ips))                # sourcecontrol haproxy host IP
     http_port: 8080                        # sourcecontrol haproxy host port
 
-  sourcecontrol-webui:                  # sourcecontrol webui
+  ap-source-control-ui:                  # sourcecontrol webui
     port: 8080
     haproxy:
       urls:
       - ((web_ui_private_ips))
     java_opts: '-XX:MaxMetaspaceSize=104857K -Xss349K -Xms681574K -XX:MetaspaceSize=104857K -Xmx681574K'
 
-  sourcecontrol-api:                    # sourcecontrol api
+  ap-source-control-api:                    # sourcecontrol api
     base:
       url: http://((api_private_ips)):8082        # sourcecontrol api base url
     port: 8082                              # sourcecontrol api port
@@ -131,7 +131,7 @@ properties:
       - ((api_private_ips))
     java_opts: '-XX:MaxMetaspaceSize=104857K -Xss349K -Xms681574K -XX:MetaspaceSize=104857K -Xmx681574K'
 
-  sourcecontrol-broker:                 # sourcecontrol broker
+  ap-source-control-broker:                 # sourcecontrol broker
     port: 8080                               # sourcecontrol port
     java_opts: '-XX:MaxMetaspaceSize=104857K -Xss349K -Xms681574K -XX:MetaspaceSize=104857K -Xmx681574K'
 
