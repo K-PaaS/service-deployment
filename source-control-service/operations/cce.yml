@@ -9,7 +9,7 @@
 
 # CCE - source-control-ui tomcat patch
 - type: replace
-  path: /instance_groups/name=source-control-ui/jobs/-
+  path: /instance_groups/name=ap-source-control-ui/jobs/-
   value:
     name: tomcat_conf
     release: ap-conf
