@@ -22,7 +22,7 @@ mariadb_instances: 1                                           # mariadb : insta
 mariadb_persistent_disk_type: "2GB"                            # mariadb : persistent disk type 
 mariadb_private_ips: "<MARIADB_PRIVATE_IPS>"                   # mariadb : private ips (e.g. "10.0.81.42")
 mariadb_port: "<MARIADB_PORT>"                                 # mariadb : database port (e.g. 31306) -- Do Not Use "3306"
-mariadb_admin_password: "<MARIADB_ADMIN_PASSWORD>"             # mariadb : database admin password (e.g. "!paas_ta202")
+mariadb_admin_password: "<MARIADB_ADMIN_PASSWORD>"             # mariadb : database admin password (e.g. "!kpaas202")
 mariadb_broker_username: "<MARIADB_BROKER_USERNAME>"           # mariadb : service-broker-user id (e.g. "sourcecontrol")
 mariadb_broker_password: "<MARIADB_BROKER_PASSWORD>"           # mariadb : service-broker-user password (e.g. "!scadmin2017")
 
