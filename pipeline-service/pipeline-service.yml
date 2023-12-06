@@ -4,7 +4,7 @@ name: pipeline-service                      # 서비스 배포이름(필수)
 releases:
 - name: ap-pipeline                    # 서비스 릴리즈 이름(필수)
   url: https://nextcloud.k-paas.org/index.php/s/pafokBBfAoNFj7f/download
-  sha1: 6c95d264ed1ef816d8b4c199d16dc0ac2baae269
+  sha1: a47427aac873e44c5064531a6fa389ceb3dfe67a
   version: "1.3.7"                                        # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 stemcells:
