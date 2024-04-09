@@ -4,9 +4,9 @@ features:
   use_dns_addresses: false
 releases:
 - name: ap-app-lifecycle
-  url: https://nextcloud.k-paas.org/index.php/s/CEkWr84Mr2YMY7L/download
-  sha1: 484fcdd2c6a6deb750ec2a649fe7e791fed402ab
-  version: "1.1.8"
+  url: https://nextcloud.k-paas.org/index.php/s/A5rwWngj66yDmZL/download
+  sha1: 0bc7accb43c8d4ba95ed00dc7b75675e594de724
+  version: "1.1.9"
 
 stemcells:
 - alias: default

@@ -4,9 +4,9 @@ features:
   use_dns_addresses: false
 releases:
 - name: ap-api-gateway
-  url: https://nextcloud.k-paas.org/index.php/s/8oecjBFdD7HA53q/download
-  sha1: 08905c5e4c1639e8c27a31d8d378043f7b87b388
-  version: "1.1.11"
+  url: https://nextcloud.k-paas.org/index.php/s/5pLKTyyteGdXRxG/download
+  sha1: ddfbac09db73619cf7e440764b2818f6e64ea04a
+  version: "1.1.12"
 
 stemcells:
 - alias: default

@@ -3,9 +3,9 @@ name: pinpoint                                                    # 서비스 �
 
 releases:
 - name: "ap-pinpoint"                                # 서비스 릴리즈 이름(필수) bosh releases로 확인 가능
-  version: "1.1.6"                                              # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
-  sha1: a7a68d534235ba5990ee18e6a42c2d0d21f7be7b 
-  url: https://nextcloud.k-paas.org/index.php/s/45CsSDmTbDGCYRi/download
+  version: "1.1.7"                                              # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+  sha1: e51b9ad6cc2d677395db5c5f675f10829fc9fb29
+  url: https://nextcloud.k-paas.org/index.php/s/7QRS9wAifMJbYYY/download
 
 stemcells:
 - alias: default
