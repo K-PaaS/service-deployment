@@ -5,7 +5,7 @@ features:
 releases:
 - name: ap-app-lifecycle
   url: https://nextcloud.k-paas.org/index.php/s/A5rwWngj66yDmZL/download
-  sha1: 0bc7accb43c8d4ba95ed00dc7b75675e594de724
+  sha1: 6a67966193f4a390d7727152c74b547a180923e8
   version: "1.1.9"
 
 stemcells:
