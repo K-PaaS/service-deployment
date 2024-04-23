@@ -19,9 +19,9 @@ releases:
 - name: bpm
   version: latest
 - name: "ap-on-demand-redis"                    # 서비스 릴리즈 이름(필수) bosh releases로 확인 가능
-  version: "1.2.7.1"                                            # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
-  sha1: 4c3190b13f5c7614586889f23ee3bc19e9dc2077
-  url: https://nextcloud.k-paas.org/index.php/s/mLXna75m7cqRPTr/download
+  version: "1.2.8"                                            # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+  sha1: 20bde1f335c779dff23d16a814f090974bf4148b
+  url: https://nextcloud.k-paas.org/index.php/s/nJEFpnPHbHy3yaZ/download
 
 update:
   canaries: 1                                               # canary 인스턴스 수(필수)

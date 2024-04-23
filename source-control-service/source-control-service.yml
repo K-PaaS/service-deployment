@@ -3,9 +3,9 @@ name: source-control-service
 
 releases:
 - name: ap-source-control
-  sha1: e4fb6ae6596a969c7e774bfdf4727c3dc8249937
-  url: https://nextcloud.k-paas.org/index.php/s/GGoCzoSwB3qsag3/download
-  version: "1.1.11"
+  sha1: cdf8065c077ade7260e7939e8a0f037d097841e2
+  url: https://nextcloud.k-paas.org/index.php/s/gr6rkB5mYAgrAwZ/download
+  version: "1.1.12"
 
 stemcells:
 - alias: default
