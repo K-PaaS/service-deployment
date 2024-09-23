@@ -5,7 +5,7 @@ features:
 releases:
 - name: ap-api-gateway
   url: https://nextcloud.k-paas.org/index.php/s/5pLKTyyteGdXRxG/download
-  sha1: ddfbac09db73619cf7e440764b2818f6e64ea04a
+  sha1: 4c62f13bccda7b402391fd2c15df320b84793f7d
   version: "1.1.12"
 
 stemcells:
